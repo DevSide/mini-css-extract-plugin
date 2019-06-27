@@ -3,7 +3,9 @@ const Self = require('../../');
 module.exports = {
   mode: 'development',
   output: {
+    chunkFilename: "[contenthash].js",
     publicPath: '/dist/',
+    crossOriginLoading: 'anonymous',
   },
   module: {
     rules: [
@@ -19,9 +21,13 @@ module.exports = {
   plugins: [
     new Self({
       filename: '[name].css',
+      chunkFilename: "[contenthash].css",
     }),
   ],
   devServer: {
     contentBase: __dirname,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    }
   },
 };
